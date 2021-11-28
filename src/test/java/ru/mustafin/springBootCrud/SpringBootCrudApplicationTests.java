@@ -15,8 +15,4 @@ class SpringBootCrudApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	void deleteUser() {
-		userService.delete((long)2);
-	}
 }

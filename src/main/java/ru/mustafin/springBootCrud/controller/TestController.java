@@ -11,42 +11,41 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-public class MyController {
-
+public class TestController {
 
     private UserService userService;
 
     @Autowired
-    public MyController(UserService userService) {
+    public TestController(UserService userService) {
         this.userService = userService;
     }
 
 
-    @GetMapping("/admin/main")
-    public String showUsers(@ModelAttribute("user") User user,Model model) {
+    @GetMapping("/admin/home")
+    public String showUsers(@ModelAttribute("user") User user, Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsersPage", allUsers);
-        return "home";
+        return "home_admin";
     }
 
 
-    @PutMapping("/admin/main/{id}")
+    @GetMapping("/admin/update-user/{id}")
     public String updateUser(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user",user);
         return "/info_for_save";
     }
 
-    @DeleteMapping("/admin/main/{id}")
+    @GetMapping("/admin/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
         userService.delete(id);
-        return "redirect:/admin/main";
+        return "redirect:/admin/home";
     }
 
     @PostMapping("/admin/save-user")
     public String saveUser(User user) {
         userService.save(user);
-        return "redirect:/admin/main";
+        return "redirect:/admin/home";
     }
 
     @GetMapping("/admin/personal-page/{id}")
@@ -56,7 +55,7 @@ public class MyController {
         return "personal_page";
     }
 
-    @GetMapping("/user/main")
+    @GetMapping("/user/home")
     public String showUser(Model model, Principal principal) {
         model.addAttribute("userPage", userService.findByUsername(principal.getName()));
         return "home_user";
