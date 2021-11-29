@@ -1,4 +1,4 @@
-package ru.freeomsk.security;
+package ru.mustafin.springBootCrud.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.freeomsk.security.handler.SuccessUserHandler;
-import ru.freeomsk.service.UserDetailsServiceImpl;
+import ru.mustafin.springBootCrud.security.handler.SuccessUserHandler;
+import ru.mustafin.springBootCrud.service.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

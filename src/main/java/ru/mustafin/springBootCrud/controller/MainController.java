@@ -1,4 +1,4 @@
-package ru.freeomsk.controller;
+package ru.mustafin.springBootCrud.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

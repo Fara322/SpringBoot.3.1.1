@@ -1,10 +1,10 @@
-package ru.freeomsk.controller;
+package ru.mustafin.springBootCrud.controller;
 
-import ru.freeomsk.model.User;
-import ru.freeomsk.service.RoleService;
-import ru.freeomsk.service.UserService;
-import ru.freeomsk.Exception.ExceptionInfo;
-import ru.freeomsk.Exception.UniqUsernameExistException;
+import ru.mustafin.springBootCrud.model.User;
+import ru.mustafin.springBootCrud.service.RoleService;
+import ru.mustafin.springBootCrud.service.UserService;
+import ru.mustafin.springBootCrud.Exception.ExceptionInfo;
+import ru.mustafin.springBootCrud.Exception.UniqUsernameExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;

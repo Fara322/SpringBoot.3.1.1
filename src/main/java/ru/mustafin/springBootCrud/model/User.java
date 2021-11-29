@@ -1,4 +1,4 @@
-package ru.freeomsk.model;
+package ru.mustafin.springBootCrud.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

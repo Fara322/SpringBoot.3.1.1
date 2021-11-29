@@ -1,6 +1,6 @@
-package ru.freeomsk.DAO;
+package ru.mustafin.springBootCrud.DAO;
 
-import ru.freeomsk.model.Role;
+import ru.mustafin.springBootCrud.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

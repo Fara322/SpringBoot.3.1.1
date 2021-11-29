@@ -1,4 +1,4 @@
-package ru.freeomsk.security.handler;
+package ru.mustafin.springBootCrud.security.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

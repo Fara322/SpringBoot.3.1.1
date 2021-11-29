@@ -1,6 +1,6 @@
-package ru.freeomsk.service;
+package ru.mustafin.springBootCrud.service;
 
-import ru.freeomsk.DAO.UserRepository;
+import ru.mustafin.springBootCrud.DAO.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,12 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    UserRepository userRepository;
-
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {

@@ -1,35 +1,31 @@
-package ru.freeomsk.service;
+package ru.mustafin.springBootCrud.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.freeomsk.DAO.RoleRepository;
-import ru.freeomsk.DAO.UserRepository;
-import ru.freeomsk.model.Role;
-import ru.freeomsk.model.User;
+import ru.mustafin.springBootCrud.DAO.RoleRepository;
+import ru.mustafin.springBootCrud.DAO.UserRepository;
+import ru.mustafin.springBootCrud.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     RoleRepository roleRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public User passwordCoder(User user) {
@@ -72,18 +68,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-    @Override
-    @PostConstruct
-    public void addDefaultUser() {
-        Set<Role> roles1 = new HashSet<>();
-        roles1.add(roleRepository.findById(1L).orElse(null));
-        Set<Role> roles2 = new HashSet<>();
-        roles2.add(roleRepository.findById(1L).orElse(null));
-        roles2.add(roleRepository.findById(2L).orElse(null));
-        User user1 = new User("user","user",(byte) 25, "user@mail.com","user",roles1);
-        User user2 = new User("admin","admin",(byte) 30, "admin@mail.com","admin",roles2);
-        save(user1);
-        save(user2);
-        }
 }
 

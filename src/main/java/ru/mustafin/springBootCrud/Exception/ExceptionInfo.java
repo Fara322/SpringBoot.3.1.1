@@ -1,4 +1,4 @@
-package ru.freeomsk.Exception;
+package ru.mustafin.springBootCrud.Exception;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
