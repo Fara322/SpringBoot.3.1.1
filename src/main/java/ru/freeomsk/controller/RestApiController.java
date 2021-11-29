@@ -4,7 +4,7 @@ import ru.freeomsk.model.User;
 import ru.freeomsk.service.RoleService;
 import ru.freeomsk.service.UserService;
 import ru.freeomsk.Exception.ExceptionInfo;
-import ru.freeomsk.Exception.UserUsernameExistException;
+import ru.freeomsk.Exception.UniqUsernameExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -42,8 +42,8 @@ public class RestApiController {
         try {
             userService.save(user);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (UserUsernameExistException u) {
-            throw new UserUsernameExistException("User with username exist");
+        }catch (UniqUsernameExistException u) {
+            throw new UniqUsernameExistException("User with username exist");
         }
     }
 
@@ -84,8 +84,8 @@ public class RestApiController {
                 userService.save(user);
             }
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (UserUsernameExistException u) {
-            throw new UserUsernameExistException("User with username exist");
+        }catch (UniqUsernameExistException u) {
+            throw new UniqUsernameExistException("User with username exist");
         }
     }
 

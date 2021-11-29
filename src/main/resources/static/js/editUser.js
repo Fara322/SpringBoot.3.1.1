@@ -18,7 +18,7 @@ async function editUser(modal, id) {
                </div>
                    
                <div class="form-group">
-                    <label for="username" class="col-form-label">Username</label>
+                    <label for="username" class="col-form-label">First Name</label>
                     <input type="text" class="form-control username" id="username" value="${user.username}">
                </div>
 
@@ -28,12 +28,7 @@ async function editUser(modal, id) {
                 </div>
 
                 <div class="form-group">
-                    <label for="name" class="com-form-label">Name</label>
-                    <input type="text" class="form-control" id="name" value="${user.name}">
-                </div>
-
-                <div class="form-group">
-                    <label for="surname" class="com-form-label">Surname</label>
+                    <label for="surname" class="com-form-label">Last Name</label>
                     <input type="text" class="form-control" id="surname" value="${user.surname}">
                 </div>
 
@@ -73,7 +68,6 @@ async function editUser(modal, id) {
         let userId = modal.find("#userId").val().trim();
         let username = modal.find("#username").val().trim();
         let password = modal.find("#password").val().trim();
-        let name = modal.find("#name").val().trim();
         let surname = modal.find("#surname").val().trim();
         let age = modal.find("#age").val().trim();
         let email = modal.find("#email").val().trim();
@@ -81,7 +75,6 @@ async function editUser(modal, id) {
             userId: userId,
             username: username,
             password: password,
-            name: name,
             surname: surname,
             age: age,
             email: email,

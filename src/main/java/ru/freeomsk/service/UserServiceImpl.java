@@ -1,7 +1,8 @@
 package ru.freeomsk.service;
 
-import ru.freeomsk.DAO.RoleDAO;
-import ru.freeomsk.DAO.UserDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.freeomsk.DAO.RoleRepository;
+import ru.freeomsk.DAO.UserRepository;
 import ru.freeomsk.model.Role;
 import ru.freeomsk.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,13 +19,15 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDAO userDAO;
-    private final RoleDAO roleDAO;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, PasswordEncoder passwordEncoder) {
-        this.userDAO = userDAO;
-        this.roleDAO = roleDAO;
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -36,13 +39,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        return userDAO.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public User getById(long id) {
         User user = null;
-        Optional<User> optional = userDAO.findById(id);
+        Optional<User> optional = userRepository.findById(id);
         if(optional.isPresent()) {
             user = optional.get();
         }
@@ -51,36 +54,36 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-        userDAO.save(passwordCoder(user));
+        userRepository.save(passwordCoder(user));
     }
 
     @Override
     public void update(User user) {
-        userDAO.save(user);
+        userRepository.save(user);
     }
 
     @Override
     public void deleteById(long id) {
-        userDAO.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public User findByUsername(String username) {
-        return userDAO.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
-//    @Override
-//    @PostConstruct
-//    public void addDefaultUser() {
-//        Set<Role> roles1 = new HashSet<>();
-//        roles1.add(roleDAO.findById(1L).orElse(null));
-//        Set<Role> roles2 = new HashSet<>();
-//        roles2.add(roleDAO.findById(1L).orElse(null));
-//        roles2.add(roleDAO.findById(2L).orElse(null));
-//        User user1 = new User("Steve","Jobs",(byte) 25, "user@mail.com", "user","12345",roles1);
-//        User user2 = new User("Garry","Potter",(byte) 30, "admin@mail.com", "admin","admin",roles2);
-//        save(user1);
-//        save(user2);
-//        }
+    @Override
+    @PostConstruct
+    public void addDefaultUser() {
+        Set<Role> roles1 = new HashSet<>();
+        roles1.add(roleRepository.findById(1L).orElse(null));
+        Set<Role> roles2 = new HashSet<>();
+        roles2.add(roleRepository.findById(1L).orElse(null));
+        roles2.add(roleRepository.findById(2L).orElse(null));
+        User user1 = new User("user","user",(byte) 25, "user@mail.com","user",roles1);
+        User user2 = new User("admin","admin",(byte) 30, "admin@mail.com","admin",roles2);
+        save(user1);
+        save(user2);
+        }
 }
 

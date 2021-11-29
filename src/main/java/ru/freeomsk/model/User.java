@@ -14,10 +14,10 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long userId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstname")
+    private String username;
 
-    @Column(name = "surname")
+    @Column(name = "lastname")
     private String surname;
 
     @Column(name = "age")
@@ -26,28 +26,24 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "username")
-    private String username;
-
     @Column(name = "password")
     private String password;
 
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "roleId"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String name, String surname, byte age, String email, String username, String password, Set<Role> roles) {
-        this.name = name;
+    public User(String username, String surname, byte age, String email, String password, Set<Role> roles) {
+        this.username = username;
         this.surname = surname;
         this.age = age;
         this.email = email;
-        this.username = username;
         this.password = password;
         this.roles = roles;
     }
@@ -66,14 +62,6 @@ public class User implements UserDetails {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurname() {

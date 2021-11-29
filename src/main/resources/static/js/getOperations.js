@@ -7,8 +7,7 @@ async function getUser() {
             temp = `
                 <tr>
                     <td>${user.userId}</td>
-                    <td>${user.username}</td>
-                    <td>${user.name}</td>
+                    <td>${user.username}</td>                 
                     <td>${user.surname}</td>
                     <td>${user.age}</td>
                     <td>${user.email}</td>
@@ -63,7 +62,6 @@ async function getUsers() {
                 <tr>
                     <td>${user.userId}</td>
                     <td>${user.username}</td>
-                    <td>${user.name}</td>
                     <td>${user.surname}</td>
                     <td>${user.age}</td>
                     <td>${user.email}</td>
